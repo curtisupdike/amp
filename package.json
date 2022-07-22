@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "lint": "eslint \"./**/*.{js,jsx}\" --quiet",
+    "format": "prettier --write \"./**/*.{js,jsx}\""
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
+}
