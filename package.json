@@ -1,9 +1,16 @@
 {
   "scripts": {
     "lint": "eslint \"./**/*.{js,jsx}\" --quiet",
-    "format": "prettier --write \"./**/*.{js,jsx}\""
+    "format": "prettier --write \"./**/*.{js,jsx}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "concurrently": "^7.3.0",
+    "nodemon": "^2.0.19",
     "prettier": "^2.7.1"
-  }
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ]
 }
