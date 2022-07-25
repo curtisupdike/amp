@@ -4,7 +4,7 @@
     "server"
   ],
   "scripts": {
-    "start": "npm start -w server",
+    "start": "concurrently -n \"client,server\" \"npm start -C client\" \"npm start -C server\"",
     "lint": "eslint \"./**/*.{js,jsx}\" --quiet",
     "format": "prettier --write \"./**/*.{js,jsx}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
