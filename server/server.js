@@ -5,18 +5,18 @@ require('dotenv').config();
 const app = express();
 const port = 3000;
 
-const authKey = process.env.AUTH_KEY;
 const teamId = process.env.TEAM_ID;
-const keyId = process.env.KEY_ID;
+const kid = process.env.AMP_KID;
+const key = process.env.AMP_KEY;
 
 app.get('/api/token', (req, res) => {
-    const developerToken = jwt.sign({}, authKey, {
+    const developerToken = jwt.sign({}, key, {
         algorithm: 'ES256', // only supported algorithm by MusicKit
         expiresIn: '30d',
         issuer: teamId,
         header: {
             alg: 'ES256',
-            kid: keyId,
+            kid,
         },
     });
     res.send({ developerToken });
