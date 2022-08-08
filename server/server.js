@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 
 const teamId = process.env.TEAM_ID;
-const kid = process.env.AMP_KID;
+const kid = process.env.AMP_KEY_ID;
 const key = process.env.AMP_KEY;
 
 app.get('/api/token', (req, res) => {

@@ -1,25 +1,27 @@
-import { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
+import { useEffect, useState } from 'react';
 
-function App() {
-    const [token, setToken] = useState();
+export default function App({ music }) {
+    const [loggedIn, setLoggedIn] = useState(music.isAuthorized);
 
     useEffect(() => {
-        fetch('/api/token')
-            .then(data => data.json())
-            .then(({ developerToken }) => {
-                setToken(developerToken);
-            });
-    }, []);
-
-    if (!token) return <h1>Loading...</h1>;
+        music.addEventListener('authorizationStatusDidChange', () =>
+            setLoggedIn(music.isAuthorized)
+        );
+    });
 
     return (
         <>
             <h1>AMP | Apple Music Player</h1>
-            <p>Developer token: {token}</p>
+            <button
+                type="button"
+                onClick={
+                    loggedIn
+                        ? () => music.unauthorize()
+                        : () => music.authorize()
+                }
+            >
+                {loggedIn ? 'Logout' : 'Login'}
+            </button>
         </>
     );
 }
-
-createRoot(document.getElementById('root')).render(<App />);
